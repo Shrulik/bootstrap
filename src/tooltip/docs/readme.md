@@ -72,6 +72,15 @@ methods are available:
   appendToBody: false
   </pre>
 
+
+**Using Custom Events**
+
+When adding custom events with $uibTooltipProvider.setTriggers(eventsMap), the only way to trigger those events is with ```domElement.dispatchEvent(new Event('customEvent'))```. Note the DOM element. From an angular $element, you would use $element[0]. 
+
+Why ? This is because custom events thrown by jQuery.trigger do not use the native implementation of events, so you can't listen to them with domElement.addEventListener, which ui-bootstrap uses. [Details](https://github.com/angular-ui/bootstrap/pull/4322)
+
+
+
 **Known issues**
 
 For Safari 7+ support, if you want to use the **focus** `tooltip-trigger`, you need to use an anchor tag with a tab index. For example:
